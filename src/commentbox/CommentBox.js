@@ -52,6 +52,10 @@ class CommentBox extends Component {
             commentNodes = <div className="comment-list">{comments}</div>
         }
 
+        if(comments.length > 2) {
+            this.props.notify()
+        }
+
         return (
             <div className="comment-box">
                 <h3>Comments</h3>

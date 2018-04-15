@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import './App.css';
-import CommentBox from './commentbox/CommentBox'
+import Connector from "./Connector";
 
 class App extends Component {
   render() {
     return (
         <div>
-          <CommentBox/>
+          <Connector/>
         </div>
     );
   }

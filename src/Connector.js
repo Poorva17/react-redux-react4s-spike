@@ -6,23 +6,23 @@ class Connector extends Component {
     constructor() {
         super();
         this.state = {
-            alert: false
+            noOfComments: 0
         };
 
-        this.notify = this.notify.bind(this)
+        this.updateNoOfComments = this.updateNoOfComments.bind(this)
 
     }
     render() {
         return (
             <div className="Connector">
-                <CommentBox notify={this.notify}/>
-                <Notification alert={this.state.alert}/>
+                <CommentBox updateNoOfComments={this.updateNoOfComments}/>
+                <Notification noOfComments={this.state.noOfComments}/>
             </div>
         );
     }
 
-    notify() {
-      this.setState({alert: true})
+    updateNoOfComments(commetsNumber) {
+      this.setState({noOfComments: commetsNumber})
     }
 }
 

@@ -11,10 +11,6 @@ class Comment extends Component {
             <div className="comment">
                 <p>Comment Author - {author}</p>
                 <p>Comment - {comment}</p>
-                {
-                    author === "Poorva" &&
-                    window.alert("Important Comment")
-                }
             </div>
         );
     }

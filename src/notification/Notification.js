@@ -5,8 +5,8 @@ class Notification extends Component {
         return (
             <div className="notification">
                 {
-                    this.props.alert &&
-                        window.alert("Too many comments")
+                    this.props.noOfComments > 5 &&
+                   window.alert("Alert - More than 5 comments!!!")
                 }
             </div>
         );

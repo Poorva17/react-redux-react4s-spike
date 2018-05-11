@@ -1,9 +1,18 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
 /.idea/
 /*/node_modules
+/*/target/
+/*/.project
+/*/.idea/*
+*.iml
+.idea
+.xml
+
+/*/project/project/target
+/*/project/target
+target
 
 # testing
 /coverage

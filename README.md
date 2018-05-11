@@ -18,6 +18,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 ## Folder Structure
 
+Folder structure to consider for react implementation - 
 ```
 react-redux-react4s-spike/
   README.md
@@ -82,19 +83,20 @@ This project is implemented using reference examples provided [react4s-samples](
   
 ## Project Structure
 
+Project structure to consider for react4s implementation
+
 ```
 react-redux-react4s-spike/
   README.md
-  react4s/
-    project/
-    target/
-    src/
-      main/
-        scala/
-            samples/
-               commentListExample/
-    build.sbt
-    index.html
+  project/
+  target/
+  src/
+    main/
+      scala/
+          samples/
+             commentListExample/
+  build.sbt
+  index.html
      etc 
 ```
 

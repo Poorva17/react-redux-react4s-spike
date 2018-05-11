@@ -73,15 +73,14 @@ See the section about [running tests](#running-tests) for more information.
 
 # 2. Work for react4s - 
 
-This project is implemented using reference examples provided [react4s-samples](https://github.com/Ahnfelt/react4s-samples)
+This project is implemented using reference examples provided [react4s-samples](https://github.com/ahnfelt/react4s-samples)
 
 - [Project Structure](#project-structure)
 - [Available sbt tasks](#available-sbt-tasks)
-  - [npm start](#npm-start)
-  - [npm test](#npm-test)
-  - [npm run build](#npm-run-build)
+  - [sbt test:compile](#sbt-test:compile)
+  - [sbt fastOptJS](#sbt-fastoptjs)
   
-##Project Structure
+## Project Structure
 
 ```
 react-redux-react4s-spike/
@@ -99,12 +98,12 @@ react-redux-react4s-spike/
      etc 
 ```
 
-##Available sbt tasks
+## Available sbt tasks
 
-### sbt test:compile
+### `sbt test:compile`
 Compile project in test mode
 
-###sbt fastOptJS
+### `sbt fastOptJS`
 Produce JavaScript file from your code.
 This will perform fast Scala.js-specific optimizations and write the resulting code to a single JavaScript file. 
 This JavaScript file is used in index.html. Open index.html from browser and play with running commentBox example 

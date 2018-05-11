@@ -19,15 +19,15 @@ class CommentBox extends Component {
     }
 
     _getComments() {
-        return this.state.commentList.map((comment) => {
-            return <Comment author={comment.author} comment={comment.comment}/>
+        return this.state.commentList.map((comment, index) => {
+            return <Comment author={comment.author} comment={comment.comment} key={index}/>
         })
     }
 
     _addComment(author, comment) {
         this.setState({
          commentList: this.state.commentList.concat([{author, comment}])})
-        this.props.updateNoOfComments(this.state.commentList.length)
+        this.props.updateNoOfComments(this.state.commentList.length + 1)
     }
 
     _handleClick() {

@@ -18,8 +18,6 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 ## Folder Structure
 
-After creation, your project should look like this:
-
 ```
 react-redux-react4s-spike/
   README.md
@@ -36,6 +34,8 @@ react-redux-react4s-spike/
       index.css
       index.js
       logo.svg
+      commentBox/
+      notification/
 ```
 
 For the project to build, **these files must exist with exact filenames**:
@@ -71,6 +71,42 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](#running-tests) for more information.
 
-# 2. Work for react4s - in progress
+# 2. Work for react4s - 
+
+This project is implemented using reference examples provided [react4s-samples](https://github.com/Ahnfelt/react4s-samples)
+
+- [Project Structure](#project-structure)
+- [Available sbt tasks](#available-sbt-tasks)
+  - [npm start](#npm-start)
+  - [npm test](#npm-test)
+  - [npm run build](#npm-run-build)
+  
+##Project Structure
+
+```
+react-redux-react4s-spike/
+  README.md
+  react4s/
+    project/
+    target/
+    src/
+      main/
+        scala/
+            samples/
+               commentListExample/
+    build.sbt
+    index.html
+     etc 
+```
+
+##Available sbt tasks
+
+### sbt test:compile
+Compile project in test mode
+
+###sbt fastOptJS
+Produce JavaScript file from your code.
+This will perform fast Scala.js-specific optimizations and write the resulting code to a single JavaScript file. 
+This JavaScript file is used in index.html. Open index.html from browser and play with running commentBox example 
 
 # 3. Work for react-redux - in progress

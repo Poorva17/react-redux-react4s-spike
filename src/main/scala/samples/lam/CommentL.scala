@@ -2,17 +2,11 @@ package samples.lam
 
 import com.raquo.laminar.api.L._
 
-class CommentL private (
-    val node: Node
-)
-
 object CommentL {
-  def apply(author: Signal[String], comment: Signal[String]): CommentL = {
-    val node = div(
-      p(textContent <-- author.map(a => s"Comment Author - $a")),
-      p(textContent <-- comment.map(c => s"Comment Author - $c"))
+  def create(author: Signal[String], comment: Signal[String]): Node = {
+    div(
+      p("Comment Author - ", child.text <-- author),
+      p("Comment - ", child.text <-- comment)
     )
-
-    new CommentL(node)
   }
 }

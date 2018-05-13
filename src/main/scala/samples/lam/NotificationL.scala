@@ -2,19 +2,14 @@ package samples.lam
 
 import com.raquo.laminar.api.L._
 
-class NotificationL private (
-    val node: Node
-)
-
 object NotificationL {
-  def apply(noOfComments: Signal[Int]): NotificationL = {
+  def create(noOfComments: Signal[Int]): Node = {
     val text = noOfComments.map {
-      case x if x > 2 => h1("Too many Comments. Reduce those")
-      case _          => h1()
+      case x if x > 2 => "Too many Comments. Reduce those"
+      case _          => ""
     }
-    val node = div(
-      child <-- text
+    div(
+      h1(child.text <-- text)
     )
-    new NotificationL(node)
   }
 }

@@ -1,8 +1,9 @@
 package samples.lam
 
 import com.raquo.laminar.api.L._
+import com.raquo.laminar.emitter.EventPropTransformation
 import org.scalajs.dom
-
+import org.scalajs.dom.MouseEvent
 import samples.CommentListExample.commentList.{AddComment, CommentEvent}
 
 class CommentFormL private (
@@ -11,35 +12,33 @@ class CommentFormL private (
 )
 
 object CommentFormL {
-  def apply(): CommentFormL = {
+  def create(): CommentFormL = {
     val author      = Var("")
     val comment     = Var("")
-    val buttonClick = new EventBus[dom.MouseEvent]
+    val buttonClick = new EventBus[String]
 
-    val commentEventSignal = author.signal.combineWith(comment.signal).map2((a, c) => AddComment(a, c))
+    val commentEventSignal = author.signal.combineWith(comment.signal).map2(AddComment)
     val commentEventStream = buttonClick.events.sample(commentEventSignal)
 
     val node = div(
       h3("CommentForm"),
       form(
-        input(
-          inContext(thisNode => onInput.map(_ => thisNode.ref.textContent) --> author.writer),
-          textContent <-- author.signal
-        ),
-        input(
-          inContext(thisNode => onInput.map(_ => thisNode.ref.textContent) --> comment.writer),
-          textContent <-- comment.signal
-        ),
+        input(onChangeText(_ --> author.writer), textContent <-- author.signal),
+        input(onChangeText(_ --> comment.writer), textContent <-- comment.signal),
         button(
           "Post Comment#",
-          onClick.preventDefault
+          onClick.preventDefault.mapTo("")
           --> buttonClick
-          --> author.writer.map[dom.MouseEvent](_ => "")
-          --> comment.writer.map[dom.MouseEvent](_ => "")
+          --> author.writer
+          --> comment.writer
         )
       )
     )
 
     new CommentFormL(node, commentEventStream)
   }
+
+  private def onChangeText(makeModifier: EventPropTransformation[_, String] => Mod[Input]): Mod[Input] =
+    inContext(thisNode => makeModifier(onInput.mapTo(thisNode.ref.textContent)))
+
 }

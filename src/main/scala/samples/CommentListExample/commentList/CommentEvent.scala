@@ -15,7 +15,7 @@ object CommentEvent {
 }
 
 object NotificationEvent {
-  def update(get: Get, event: NotificationEvent): Int = event match {
+  def update(event: NotificationEvent): Int = event match {
     case UpdateNoOfComments(noOfComments: Int) => noOfComments
   }
 }

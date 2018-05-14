@@ -12,7 +12,7 @@ case class Connector() extends Component[NoEmit] {
     E.div(
       E.div(
         Component(CommentBox).withHandler { e =>
-          noOfComments.set(NotificationEvent.update(get, e))
+          noOfComments.set(NotificationEvent.update(e))
         }
       ),
       E.div(

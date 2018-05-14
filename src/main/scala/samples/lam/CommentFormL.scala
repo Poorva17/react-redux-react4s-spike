@@ -8,7 +8,7 @@ import samples.CommentListExample.commentList.{AddComment, CommentEvent}
 
 class CommentFormL private (
     val node: Node,
-    val commentEvent: EventStream[CommentEvent]
+    val commentEvents: EventStream[CommentEvent]
 )
 
 object CommentFormL {
@@ -17,8 +17,8 @@ object CommentFormL {
     val comment     = Var("")
     val buttonClick = new EventBus[String]
 
-    val commentEventSignal = author.signal.combineWith(comment.signal).map2(AddComment)
-    val commentEventStream = buttonClick.events.sample(commentEventSignal)
+    val commentEvents      = author.signal.combineWith(comment.signal).map2(AddComment)
+    val commentEventStream = buttonClick.events.sample(commentEvents)
 
     val node = div(
       h3("CommentForm"),

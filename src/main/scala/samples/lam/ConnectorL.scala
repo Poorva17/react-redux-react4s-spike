@@ -6,13 +6,11 @@ import samples.CommentListExample.commentList.NotificationEvent
 object ConnectorL {
   def create(): Node = {
     val commentBox   = CommentBoxL.create()
-    val noOfComments = commentBox.notificationEvent.map(NotificationEvent.update)
-
-    val notification = NotificationL.create(noOfComments)
+    val noOfComments = commentBox.notificationEvents.map(NotificationEvent.update)
 
     div(
       commentBox.node,
-      notification
+      NotificationL.create(noOfComments)
     )
   }
 }

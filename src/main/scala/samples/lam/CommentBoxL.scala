@@ -5,7 +5,7 @@ import samples.CommentListExample.commentList.{CommentEvent, CommentModel, Notif
 
 class CommentBoxL private (
     val node: Node,
-    val notificationEvent: Signal[NotificationEvent]
+    val notificationEvents: Signal[NotificationEvent]
 )
 
 object CommentBoxL {
@@ -14,7 +14,7 @@ object CommentBoxL {
     val showComments = buttonClick.events.fold(false)((acc, elm) => !acc)
 
     val commentForm   = CommentFormL.create()
-    val commentModels = commentForm.commentEvent.fold(List.empty[CommentModel])(CommentEvent.update)
+    val commentModels = commentForm.commentEvents.fold(List.empty[CommentModel])(CommentEvent.update)
 
     val buttonText = showComments.map {
       case true  => "Hide Comments"

@@ -5,7 +5,7 @@ import com.github.ahnfelt.react4s._
 case class CommentBox() extends Component[NotificationEvent] {
 
   val showCommentsS  = State(false)
-  var commentModelsS = State(List.empty[CommentModel])
+  val commentModelsS = State(List.empty[CommentModel])
 
   override def render(get: Get): ElementOrComponent = {
     val showComments                      = get(showCommentsS)
@@ -30,8 +30,8 @@ case class CommentBox() extends Component[NotificationEvent] {
       commentNodes,
       E.div(
         Component(CommentForm).withHandler { commentEvent =>
-          commentModelsS.set(CommentEvent.update(get(commentModelsS), commentEvent))
-          emit(UpdateNoOfComments(get(commentModelsS).length))
+          commentModelsS.set(CommentEvent.update(commentModels, commentEvent))
+          emit(UpdateNoOfComments(commentModels.length))
         }
       )
     )

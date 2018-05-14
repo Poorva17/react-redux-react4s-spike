@@ -10,7 +10,7 @@ class CommentBox extends Component {
 
         this.state = {
             showComments: false,
-            commentList: []
+            comments: []
         };
 
         this._getComments = this._getComments.bind(this);
@@ -18,23 +18,23 @@ class CommentBox extends Component {
         this._addComment = this._addComment.bind(this)
     }
 
-    _getComments() {
-        return this.state.commentList.map((comment, index) => {
+    _getComments = () => {
+        return this.state.comments.map((comment, index) => {
             return <Comment author={comment.author} comment={comment.comment} key={index}/>
         })
-    }
+    };
 
-    _addComment(author, comment) {
+    _addComment = (author, comment)  => {
         this.setState({
-         commentList: this.state.commentList.concat([{author, comment}])})
-        this.props.updateNoOfComments(this.state.commentList.length + 1)
-    }
+         comments: this.state.comments.concat([{author, comment}])})
+        this.props.updateNoOfComments(this.state.comments.length + 1)
+    };
 
-    _handleClick() {
+    _handleClick = () => {
         this.setState({
             showComments: !this.state.showComments
         })
-    }
+    };
 
     render() {
         let commentNodes;

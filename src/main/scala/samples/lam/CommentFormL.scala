@@ -2,17 +2,10 @@ package samples.lam
 
 import com.raquo.laminar.api.L._
 import com.raquo.laminar.emitter.EventPropTransformation
-import org.scalajs.dom
-import org.scalajs.dom.MouseEvent
 import samples.CommentListExample.commentList.{AddComment, CommentEvent}
 
-class CommentFormL private (
-    val node: Node,
-    val commentEvents: EventStream[CommentEvent]
-)
-
 object CommentFormL {
-  def create(): CommentFormL = {
+  def create(): Node = {
     val author      = Var("")
     val comment     = Var("")
     val buttonClick = new EventBus[String]
@@ -35,7 +28,9 @@ object CommentFormL {
       )
     )
 
-    new CommentFormL(node, commentEventStream)
+    Store.commentBus.writer.addSource(commentEventStream)(node)
+
+    node
   }
 
   private def onChangeText(makeModifier: EventPropTransformation[_, String] => Mod[Input]): Mod[Input] =

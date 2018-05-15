@@ -3,10 +3,10 @@ package samples.lam
 import com.raquo.laminar.api.L._
 
 object CommentL {
-  def create(author: Signal[String], comment: Signal[String]): Node = {
+  def create(author: String, comment: String): Node = {
     div(
-      p("Comment Author - ", child.text <-- author),
-      p("Comment - ", child.text <-- comment)
+      p(s"Comment Author - $author"),
+      p(s"Comment - $comment")
     )
   }
 }

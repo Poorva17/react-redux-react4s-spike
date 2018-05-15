@@ -5,7 +5,7 @@ import com.raquo.laminar.emitter.EventPropTransformation
 import samples.CommentListExample.commentList.{AddComment, CommentEvent}
 
 object CommentFormL {
-  def create(): Node = {
+  def create(commentEventWriter: WriteBus[CommentEvent]): Node = {
     val author      = Var("")
     val comment     = Var("")
     val buttonClick = new EventBus[String]
@@ -28,7 +28,7 @@ object CommentFormL {
       )
     )
 
-    Store.commentBus.writer.addSource(commentEventStream)(node)
+    commentEventWriter.addSource(commentEventStream)(node)
 
     node
   }

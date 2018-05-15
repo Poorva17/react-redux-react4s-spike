@@ -3,7 +3,7 @@ package samples.lam
 import com.raquo.laminar.api.L._
 import samples.CommentListExample.commentList.{CommentEvent, CommentModel}
 
-object Store {
+class Store {
   val commentBus = new EventBus[CommentEvent]
 
   val commentModels: Signal[List[CommentModel]] = commentBus.events.fold(List.empty[CommentModel])(CommentEvent.update)

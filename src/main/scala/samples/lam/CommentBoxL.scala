@@ -1,9 +1,10 @@
 package samples.lam
 
 import com.raquo.laminar.api.L._
+import samples.CommentListExample.commentList.{CommentEvent, CommentModel}
 
 object CommentBoxL {
-  def create(): Node = {
+  def create(commentModels: Signal[List[CommentModel]], commentEventWriter: WriteBus[CommentEvent]): Node = {
     val buttonClick  = new EventBus[Unit]
     val showComments = buttonClick.events.fold(false)((acc, elm) => !acc)
 
@@ -12,10 +13,10 @@ object CommentBoxL {
       case false => "Show Comments"
     }
 
-    val items = Store.commentModels.combineWith(showComments).map2 { (commentModels, showComments) =>
+    val items = commentModels.combineWith(showComments).map2 { (commentModels, showComments) =>
       if (showComments) {
         commentModels.map { commentModel =>
-          li(CommentL.create(Val(commentModel.author), Val(commentModel.comment)))
+          li(CommentL.create(commentModel.author, commentModel.comment))
         }
       } else {
         List.empty
@@ -26,7 +27,7 @@ object CommentBoxL {
       h3("Comments"),
       button(textContent <-- buttonText, onClick.preventDefault.mapTo(()) --> buttonClick.writer),
       ul(children <-- items),
-      CommentFormL.create()
+      CommentFormL.create(commentEventWriter)
     )
   }
 }

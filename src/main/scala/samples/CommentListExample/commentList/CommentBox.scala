@@ -2,7 +2,7 @@ package samples.CommentListExample.commentList
 
 import com.github.ahnfelt.react4s._
 
-case class CommentBox() extends Component[NotificationEvent] {
+case class CommentBox(increment: P[Get => Unit]) extends Component[NoEmit] {
 
   val showCommentsS  = State(false)
   val commentModelsS = State(List.empty[CommentModel])
@@ -10,6 +10,7 @@ case class CommentBox() extends Component[NotificationEvent] {
   override def render(get: Get): ElementOrComponent = {
     val showComments                      = get(showCommentsS)
     val commentModels: List[CommentModel] = get(commentModelsS)
+    val incrementFun: Get => Unit         = get(increment)
 
     val buttonText = if (showComments) "Hide Comments" else "Show Comments"
 
@@ -29,9 +30,8 @@ case class CommentBox() extends Component[NotificationEvent] {
       }),
       commentNodes,
       E.div(
-        Component(CommentForm).withHandler { commentEvent =>
+        Component(CommentForm, incrementFun).withHandler { commentEvent =>
           commentModelsS.set(CommentEvent.update(commentModels, commentEvent))
-          emit(UpdateNoOfComments(commentModels.length))
         }
       )
     )

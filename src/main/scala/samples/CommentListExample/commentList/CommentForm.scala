@@ -2,12 +2,13 @@ package samples.CommentListExample.commentList
 
 import com.github.ahnfelt.react4s._
 
-case class CommentForm() extends Component[CommentEvent] {
+case class CommentForm(increment: P[Get => Unit]) extends Component[CommentEvent] {
 
   val author  = State("")
   val comment = State("")
 
-  override def render(get: Get): Element =
+  override def render(get: Get): Element = {
+    val incrementFun = get(increment)
     E.div(
       E.h3(Text("CommentForm")),
       E.form(
@@ -17,10 +18,12 @@ case class CommentForm() extends Component[CommentEvent] {
       ),
       A.onSubmit { e =>
         e.preventDefault()
+        incrementFun(get)
         emit(AddComment(get(author), get(comment)))
         author.set("")
         comment.set("")
       }
     )
+  }
 
 }

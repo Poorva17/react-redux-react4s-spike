@@ -2,7 +2,7 @@ package samples.CommentListExample.commentList
 
 import com.github.ahnfelt.react4s._
 
-case class CommentBox(increment: P[Get => Unit]) extends Component[NoEmit] {
+case class CommentBox(increment: P[() => Unit]) extends Component[NoEmit] {
 
   val showCommentsS  = State(false)
   val commentModelsS = State(List.empty[CommentModel])
@@ -10,7 +10,7 @@ case class CommentBox(increment: P[Get => Unit]) extends Component[NoEmit] {
   override def render(get: Get): ElementOrComponent = {
     val showComments                      = get(showCommentsS)
     val commentModels: List[CommentModel] = get(commentModelsS)
-    val incrementFun: Get => Unit         = get(increment)
+    val incrementFun                      = get(increment)
 
     val buttonText = if (showComments) "Hide Comments" else "Show Comments"
 

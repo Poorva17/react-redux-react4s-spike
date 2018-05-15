@@ -8,11 +8,11 @@ case class Connector() extends Component[NoEmit] {
 
   val noOfComments = State(0)
 
-  def increment(get: Get): Unit = {
-    noOfComments.set(get(noOfComments) + 1)
-  }
-
   override def render(get: Get): ElementOrComponent = {
+    def increment(): Unit = {
+      noOfComments.set(get(noOfComments) + 1)
+    }
+
     E.div(
       E.div(
         Component(CommentBox, increment _)

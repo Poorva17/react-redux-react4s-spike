@@ -2,7 +2,7 @@ package samples.CommentListExample.commentList
 
 import com.github.ahnfelt.react4s._
 
-case class CommentForm(increment: P[Get => Unit]) extends Component[CommentEvent] {
+case class CommentForm(increment: P[() => Unit]) extends Component[CommentEvent] {
 
   val author  = State("")
   val comment = State("")
@@ -18,7 +18,7 @@ case class CommentForm(increment: P[Get => Unit]) extends Component[CommentEvent
       ),
       A.onSubmit { e =>
         e.preventDefault()
-        incrementFun(get)
+        incrementFun()
         emit(AddComment(get(author), get(comment)))
         author.set("")
         comment.set("")

@@ -1,8 +1,10 @@
 package samples.CommentListExample.commentList
 
 import com.github.ahnfelt.react4s._
+import samples.CommentListExample.commentList.CommentBox.UpdateNoOfComments
+import samples.CommentListExample.commentList.CommentForm.AddComment
 
-case class CommentBox(increment: P[() => Unit]) extends Component[NoEmit] {
+case class CommentBox() extends Component[CommentBox.Msg] {
 
   val showCommentsS  = State(false)
   val commentModelsS = State(List.empty[CommentModel])
@@ -10,7 +12,6 @@ case class CommentBox(increment: P[() => Unit]) extends Component[NoEmit] {
   override def render(get: Get): ElementOrComponent = {
     val showComments                      = get(showCommentsS)
     val commentModels: List[CommentModel] = get(commentModelsS)
-    val incrementFun                      = get(increment)
 
     val buttonText = if (showComments) "Hide Comments" else "Show Comments"
 
@@ -22,6 +23,13 @@ case class CommentBox(increment: P[() => Unit]) extends Component[NoEmit] {
       E.ul()
     }
 
+    def handleCommentFormEvents(msg: CommentForm.Msg): Unit = msg match {
+      case AddComment(author, comment) =>
+        val commentModels = get(commentModelsS)
+        commentModelsS.set(commentModels :+ CommentModel(author, comment))
+        emit(UpdateNoOfComments(commentModels.length))
+    }
+
     E.div(
       E.h3(Text("Comments")),
       E.button(Text(buttonText), A.onClick { e =>
@@ -29,13 +37,16 @@ case class CommentBox(increment: P[() => Unit]) extends Component[NoEmit] {
         showCommentsS.set(!showComments)
       }),
       commentNodes,
-      E.div(
-        Component(CommentForm, incrementFun).withHandler { commentEvent =>
-          commentModelsS.set(CommentEvent.update(commentModels, commentEvent))
-        }
-      )
+      E.div(Component(CommentForm).withHandler(handleCommentFormEvents))
     )
   }
+
+}
+
+object CommentBox {
+  sealed trait Msg
+  case class UpdateNoOfComments(noOfComments: Int) extends Msg
+
 }
 
 case class CommentModel(author: String, comment: String)

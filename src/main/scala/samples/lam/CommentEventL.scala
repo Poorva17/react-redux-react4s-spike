@@ -1,6 +1,6 @@
-package samples.CommentListExample.commentList
+package samples.lam
 
-import com.github.ahnfelt.react4s.Get
+import samples.CommentListExample.commentList.CommentModel
 
 sealed trait CommentEvent
 case class AddComment(author: String, comment: String) extends CommentEvent

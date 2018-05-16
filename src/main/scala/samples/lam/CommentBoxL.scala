@@ -1,7 +1,7 @@
 package samples.lam
 
 import com.raquo.laminar.api.L._
-import samples.CommentListExample.commentList.{CommentEvent, CommentModel}
+import samples.CommentListExample.commentList.CommentModel
 
 object CommentBoxL {
   def create(commentModels: Signal[List[CommentModel]], commentEventWriter: WriteBus[CommentEvent]): Node = {

@@ -2,7 +2,6 @@ package samples.lam
 
 import com.raquo.laminar.api.L._
 import com.raquo.laminar.emitter.EventPropTransformation
-import samples.CommentListExample.commentList.{AddComment, CommentEvent}
 
 object CommentFormL {
   def create(commentEventWriter: WriteBus[CommentEvent]): Node = {

@@ -1,6 +1,6 @@
 package samples.lam
 
-import samples.CommentListExample.commentList.CommentModel
+import samples.r4s.CommentModel
 
 sealed trait CommentEvent
 case class AddComment(author: String, comment: String) extends CommentEvent

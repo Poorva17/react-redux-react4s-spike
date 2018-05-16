@@ -1,9 +1,9 @@
-package samples.CommentListExample.commentList
+package samples.r4s
 
 import com.github.ahnfelt.react4s._
-import samples.CommentListExample.commentList.CommentForm.AddComment
+import samples.r4s.CommentForm.{AddComment, CommentFormMsg}
 
-case class CommentForm() extends Component[CommentForm.Msg] {
+case class CommentForm() extends Component[CommentFormMsg] {
 
   val author  = State("")
   val comment = State("")
@@ -28,6 +28,6 @@ case class CommentForm() extends Component[CommentForm.Msg] {
 }
 
 object CommentForm {
-  sealed trait Msg
-  case class AddComment(author: String, comment: String) extends Msg
+  sealed trait CommentFormMsg
+  case class AddComment(author: String, comment: String) extends CommentFormMsg
 }

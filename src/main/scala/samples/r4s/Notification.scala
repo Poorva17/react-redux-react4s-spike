@@ -1,7 +1,6 @@
-package samples.CommentListExample.Notification
+package samples.r4s
 
 import com.github.ahnfelt.react4s._
-import samples.CommentListExample.CommentsStore
 
 case class Notification() extends Component[NoEmit] {
   val commentStore = CommentsStore(this)

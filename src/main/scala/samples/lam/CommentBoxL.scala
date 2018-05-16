@@ -1,7 +1,7 @@
 package samples.lam
 
 import com.raquo.laminar.api.L._
-import samples.CommentListExample.commentList.CommentModel
+import samples.r4s.CommentModel
 
 object CommentBoxL {
   def create(commentModels: Signal[List[CommentModel]], commentEventWriter: WriteBus[CommentEvent]): Node = {
@@ -14,12 +14,9 @@ object CommentBoxL {
     }
 
     val items = commentModels.combineWith(showComments).map2 { (commentModels, showComments) =>
-      if (showComments) {
-        commentModels.map { commentModel =>
-          li(CommentL.create(commentModel.author, commentModel.comment))
-        }
-      } else {
-        List.empty
+      val shownCommentModels = if (showComments) commentModels else List.empty
+      shownCommentModels.map { commentModel =>
+        li(CommentL.create(commentModel.author, commentModel.comment))
       }
     }
 

@@ -1,17 +1,17 @@
 package samples.CommentListExample.commentList
 
 import com.github.ahnfelt.react4s._
-import samples.CommentListExample.commentList.CommentBox.UpdateNoOfComments
+import samples.CommentListExample.CommentsStore
 import samples.CommentListExample.commentList.CommentForm.AddComment
 
-case class CommentBox() extends Component[CommentBox.Msg] {
+case class CommentBox() extends Component[NoEmit] {
 
-  val showCommentsS  = State(false)
-  val commentModelsS = State(List.empty[CommentModel])
+  val showCommentsS = State(false)
+  val commentStore  = CommentsStore(this)
 
   override def render(get: Get): ElementOrComponent = {
     val showComments                      = get(showCommentsS)
-    val commentModels: List[CommentModel] = get(commentModelsS)
+    val commentModels: List[CommentModel] = get(commentStore)
 
     val buttonText = if (showComments) "Hide Comments" else "Show Comments"
 
@@ -25,8 +25,7 @@ case class CommentBox() extends Component[CommentBox.Msg] {
 
     def handleCommentFormEvents(msg: CommentForm.Msg): Unit = msg match {
       case AddComment(author, comment) =>
-        commentModelsS.set(commentModels :+ CommentModel(author, comment))
-        emit(UpdateNoOfComments(get(commentModelsS).length))
+        CommentsStore.emit(CommentBox.AddComment(author, comment))
     }
 
     E.div(
@@ -44,8 +43,7 @@ case class CommentBox() extends Component[CommentBox.Msg] {
 
 object CommentBox {
   sealed trait Msg
-  case class UpdateNoOfComments(noOfComments: Int) extends Msg
-
+  case class AddComment(author: String, comment: String) extends Msg
 }
 
 case class CommentModel(author: String, comment: String)

@@ -1,11 +1,13 @@
 package samples.CommentListExample.Notification
 
 import com.github.ahnfelt.react4s._
+import samples.CommentListExample.CommentsStore
 
-case class Notification(noOfComments: P[Int]) extends Component[NoEmit] {
+case class Notification() extends Component[NoEmit] {
+  val commentStore = CommentsStore(this)
 
   override def render(get: Get): Element = E.div(
-    if (get(noOfComments) > 2) {
+    if (get(commentStore).length > 2) {
       E.h1(Text("Too many Comments. Reduce those"))
     } else {
       E.h1()

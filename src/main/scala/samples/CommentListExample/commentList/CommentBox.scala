@@ -25,9 +25,8 @@ case class CommentBox() extends Component[CommentBox.Msg] {
 
     def handleCommentFormEvents(msg: CommentForm.Msg): Unit = msg match {
       case AddComment(author, comment) =>
-        val commentModels = get(commentModelsS)
         commentModelsS.set(commentModels :+ CommentModel(author, comment))
-        emit(UpdateNoOfComments(commentModels.length))
+        emit(UpdateNoOfComments(get(commentModelsS).length))
     }
 
     E.div(

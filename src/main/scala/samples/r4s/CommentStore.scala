@@ -1,7 +1,5 @@
 package samples.r4s
 
-import samples.GlobalStore
-
 object CommentStore extends GlobalStore[List[CommentModel]](List.empty[CommentModel]) {
   override def onEmit(message: Msg, currentValue: List[CommentModel]): List[CommentModel] = {
     message match {

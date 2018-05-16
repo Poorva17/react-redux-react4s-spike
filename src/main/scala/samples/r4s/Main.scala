@@ -1,4 +1,4 @@
-package samples
+package samples.r4s
 
 import com.github.ahnfelt.react4s._
 

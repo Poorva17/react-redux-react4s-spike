@@ -2,9 +2,9 @@ package samples.lam
 
 import com.raquo.laminar.api.L._
 
-object NotificationL {
-  def create(commentLength: Signal[Int]): Node = {
-    val text = commentLength.map {
+object LNotification {
+  def create(): Node = {
+    val text = LCommentStore.commentLength.map {
       case x if x > 2 => "Too many Comments. Reduce those"
       case _          => ""
     }

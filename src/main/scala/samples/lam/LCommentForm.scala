@@ -2,9 +2,12 @@ package samples.lam
 
 import com.raquo.laminar.api.L._
 import com.raquo.laminar.emitter.EventPropTransformation
+import samples.r4s.CommentForm.{AddComment, CommentFormMsg}
 
-object CommentFormL {
-  def create(commentEventWriter: WriteBus[CommentEvent]): Node = {
+class LCommentForm private (val node: Node, val commentEventStream: EventStream[CommentFormMsg])
+
+object LCommentForm {
+  def create(): LCommentForm = {
     val author      = Var("")
     val comment     = Var("")
     val buttonClick = new EventBus[String]
@@ -27,9 +30,7 @@ object CommentFormL {
       )
     )
 
-    commentEventWriter.addSource(commentEventStream)(node)
-
-    node
+    new LCommentForm(node, commentEventStream)
   }
 
   private def onChangeText(makeModifier: EventPropTransformation[_, String] => Mod[Input]): Mod[Input] =

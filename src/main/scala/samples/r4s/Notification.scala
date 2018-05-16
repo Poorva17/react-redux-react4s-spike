@@ -3,7 +3,7 @@ package samples.r4s
 import com.github.ahnfelt.react4s._
 
 case class Notification() extends Component[NoEmit] {
-  val commentStore = CommentsStore(this)
+  val commentStore = CommentStore(this)
 
   override def render(get: Get): Element = E.div(
     if (get(commentStore).length > 2) {

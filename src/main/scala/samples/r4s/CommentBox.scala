@@ -6,7 +6,7 @@ import samples.r4s.CommentForm.AddComment
 case class CommentBox() extends Component[NoEmit] {
 
   val showCommentsS = State(false)
-  val commentStore  = CommentsStore(this)
+  val commentStore  = CommentStore(this)
 
   override def render(get: Get): ElementOrComponent = {
     val showComments       = get(showCommentsS)
@@ -15,7 +15,7 @@ case class CommentBox() extends Component[NoEmit] {
     val buttonText = if (showComments) "Hide Comments" else "Show Comments"
 
     def handleCommentFormEvents(msg: CommentForm.CommentFormMsg): Unit = msg match {
-      case AddComment(author, comment) => CommentsStore.emit(CommentsStore.AddCommentToStore(author, comment))
+      case AddComment(author, comment) => CommentStore.emit(CommentStore.AddCommentToStore(author, comment))
     }
 
     E.div(

@@ -1,5 +1,5 @@
 {
-  "name": "my-flow-app",
+  "name": "react-flow",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,11 +9,16 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "flow": "flow",
+    "build": "babel src/ -d lib/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "flow-bin": "^0.72.0"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.72.0",
+    "flow-remove-types": "^1.2.3"
   }
 }

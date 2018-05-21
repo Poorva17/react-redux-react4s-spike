@@ -4,9 +4,9 @@ class CommentForm extends Component {
 
     constructor() {
         super();
-        this._handleSubmit = this._handleSubmit.bind(this);
-        this._updateAuthor = this._updateAuthor.bind(this);
-        this._updateComment = this._updateComment.bind(this);
+        this.handleSubmit = this._handleSubmit.bind(this);
+        this.updateAuthor = this._updateAuthor.bind(this);
+        this.updateComment = this._updateComment.bind(this);
 
         this.state = {
             author: "",

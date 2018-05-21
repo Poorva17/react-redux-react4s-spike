@@ -1,12 +1,14 @@
+//      
+
 import * as React from 'react';
 import {Component} from 'react';
 
-type Props = {
-  author: number,
-  comment: string,
-};
+              
+                 
+                  
+  
 
-class Comment extends Component<Props> {
+class Comment extends Component        {
     render() {
         return (
             <div className="comment">

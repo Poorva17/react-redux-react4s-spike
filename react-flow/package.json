@@ -10,14 +10,11 @@
   "scripts": {
     "start": "react-scripts start",
     "flow": "flow",
-    "build": "babel src/ -d lib/",
+    "build": "flow-remove-types src/ -d lib/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-flow": "^6.23.0",
     "flow-bin": "^0.72.0",
     "flow-remove-types": "^1.2.3"
   }

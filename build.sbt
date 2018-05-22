@@ -21,5 +21,10 @@ libraryDependencies ++= Seq(
   "com.raquo" %%% "laminar" % "0.3",
   "org.scala-js" %%% "scalajs-dom" % "0.9.5",
   "com.raquo" %%% "domtestutils" % "0.7" % Test,
-  "org.scalatest" %%% "scalatest" % "3.0.5" % Test
+  "org.scalatest" %%% "scalatest" % "3.0.5" % Test,
+  "com.github.japgolly.scalajs-react" %%% "core" % "1.2.0"
 )
+
+npmDependencies in Compile ++= Seq(
+  "react" -> "16.2.0",
+  "react-dom" -> "16.2.0")

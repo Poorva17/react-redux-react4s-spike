@@ -9,7 +9,7 @@ import scala.scalajs.js.annotation.JSExport
 object RMain {
 
   @JSExport
-  def main(args: Array[String]): Unit = {
+  def main2(args: Array[String]): Unit = {
     val mainComp: Unmounted[Unit, Int, RMainComponentBackend] = RMainComponent.build()
     E.div(mainComp).renderIntoDOM(document.getElementById("main"))
   }

@@ -15,9 +15,9 @@ class CommentBox extends Component {
       showComments: false,
     };
 
-    this.getComments = this._getComments.bind(this);
-    this.handleClick = this._handleClick.bind(this);
-    this.addComment = this._addComment.bind(this)
+    this._getComments = this._getComments.bind(this);
+    this._handleClick = this._handleClick.bind(this);
+    this._addComment = this._addComment.bind(this)
   }
 
   _getComments = () => {
